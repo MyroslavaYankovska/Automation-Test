@@ -1,24 +1,22 @@
-
 import * as user from '../fixtures/user.json';
-import {loginViaUI} from '../support/helper';
+import { headlessLogin } from '../support/helper';
 
 it('open account page', () => {
 
-headlessLogin(user);
-    
+    headlessLogin(user);
 
-cy.visit('/index.php?rt=account/login');
-cy.log('**Verify user first name on account page**');
-cy.get('h1 span.subtext', {timeout: 20000}).should('contain', user.firstName); 
+    cy.visit('/index.php?rt=account/account');
+
+    cy.log('**Verify user first name on account page**');
+    cy.get('h1 span.subtext', {timeout: 20000}).should('contain', user.firstName);
 })
 
+it('open order history page', () => {
 
-it('open order history', () => {
+    headlessLogin(user);
 
-headlessLogin(user);
-    
+    cy.visit('/index.php?rt=account/history');
 
-cy.visit('/index.php?rt=account/login');
-cy.log('**Verify user first name on account page**');
-cy.get('h1 span.maintext', {timeout: 20000}).should('contain', 'My Order History'); 
+    cy.log('**Verify user first name on account page**');
+    cy.get('h1 span.maintext', {timeout: 20000}).should('contain', ' My Order History');
 })
