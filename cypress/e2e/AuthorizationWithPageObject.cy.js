@@ -1,12 +1,12 @@
 import * as user from '../fixtures/user.json';
-import loginPage from '../support/pages/LoginPage';
-import accountPage from '../support/pages/AccountPage';
+import LoginPage from '../support/pages/LoginPage';
+import AccountPage from '../support/Pages/Account Page';
 
 it('Authorization', () => {
 
-    loginPage.visit();
-    loginPage.submitLoginForm(user);
+    LoginPage.visit();
+    LoginPage.submitLoginForm(user);
 
-    accountPage.verifyUserName(user)
+    AccountPage.verifyUserName(user);
 
 })

@@ -2,23 +2,17 @@ import BasePage from "./BasePage";
 
 class LoginPage extends BasePage{
 
-    constructor(){
-        this.loginField = '#loginFrm_loginname';
-        this.passwordField = '#loginFrm_loginname';
-        this.submitButton = 'button[type="submit"]';
-    }
-
     visit(){
         cy.log('Open website login page');
         cy.visit('/index.php?rt=account/login');
     }
 
     getLoginField(){
-        return  cy.get('#loginFrm_loginname');
+        return cy.get('#loginFrm_loginname');
     }
 
     getPasswordField(){
-        return  cy.get('#loginFrm_password');
+        return cy.get('#loginFrm_password');
     }
 
     getSubmitButton(){
