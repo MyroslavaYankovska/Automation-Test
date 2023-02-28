@@ -20,7 +20,8 @@ it('Registration', () => {
     cy.get('.topnavbar [data-id="menu_account"]').click();
 
     cy.log('**Open website sign up page**');
-    cy.get('#accountFrm button').click();
+    //cy.get('#accountFrm button').click();
+    cy.get('[title="Continue"]').click();
 
     cy.log('**Fill sign up form**');
     cy.get('#AccountFrm_firstname').type(user.firstName);
@@ -52,7 +53,7 @@ it('Registration', () => {
 it('Authorization', () => {
 
     cy.log('Open website login page');
-    cy.visit('https://automationteststore.com/index.php?rt=account/login');
+    cy.visit('/index.php?rt=account/login');
 
     cy.log('Check user is unauthorized');
     cy.getCookie('customer').should('be.null');

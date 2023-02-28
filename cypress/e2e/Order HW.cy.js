@@ -1,0 +1,100 @@
+import * as user from '../fixtures/user.json';
+import {loginViaUI} from '../support/helper';
+import {SearchProduct} from '../support/helper';
+
+it('Order', () => {
+
+   loginViaUI(user);
+
+//Class Work
+    // cy.log('**Choose product**');
+    // cy.get('.nav-pills.categorymenu').children('li').eq(2).click();
+    // cy.get('.thumbnails.row').children('li').eq(0).click();
+    // cy.get('.col-md-3.col-sm-6.col-xs-12').children('.thumbnail').eq(0).click();
+    // cy.get('.productpagecart').children('li').eq(0).click();
+    // cy.get('#cart_quantity50').clear().type('2');
+    // cy.get('a.btn.btn-default.mr10.mb10').click();
+    // cy.get('.nav-pills.categorymenu').children('li').eq(4).click();
+    // cy.get('.thumbnails.row').children('li').last().click();
+    // cy.get('#sort').select('Price Low > High');
+    // cy.get('.pricetag.jumbotron').children('.productcart').eq(6).click();
+
+    // cy.log('**Order products**');
+    // cy.get('.productpagecart').children('li').eq(0).click();
+    // cy.get('#cart_checkout1').click();
+    // cy.get('#checkout_btn').click();
+
+    // cy.get('.maintext').should('contain', ' Your Order Has Been Processed!');
+
+    //HomeWork 1
+
+    cy.log('**Choose product**');
+    cy.get('.nav-pills.categorymenu')
+    .children('li')
+    .eq(5)
+    .click();
+
+    cy.get('[name="sort"]')
+    .select('Name Z - A');
+
+    cy.get('[title="ck IN2U Eau De Toilette Spray for Him"]')
+    .click();
+
+    cy.get('a.cart')
+    .click();
+
+    cy.get('#cart_quantity7808d50be7efed8dd74bfcc27df4d70570')
+    .clear()
+    .type('2');
+
+    cy.get('[name="country[]"]')
+    .select('Ukraine');
+
+    cy.get('[name="country_zones[]"]')
+    .select('Kyiv');
+
+    cy.get('.btn.btn-orange.pull-right')
+    .click({multiple: true});
+
+    cy.get('[title="Confirm Order"]')
+    .click();
+
+    cy.get('.maintext').should('contain', ' Your Order Has Been Processed!');
+
+})
+
+ //HomeWork 2
+
+it.only('Order', () => {
+
+    loginViaUI(user);
+
+    cy.get('#filter_keyword')
+        .type('i')
+        .closest("form")
+        .submit();
+
+    SearchProduct('ck IN2U Eau De Toilette Spray for Him');
+
+    cy.get('a.cart')
+    .click();
+
+    cy.get('#cart_quantity7808d50be7efed8dd74bfcc27df4d70570')
+    .clear()
+    .type('2');
+
+    cy.get('[name="country[]"]')
+    .select('Ukraine');
+
+    cy.get('[name="country_zones[]"]')
+    .select('Kyiv');
+
+    cy.get('.btn.btn-orange.pull-right')
+    .click({ multiple: true });
+
+    cy.get('[title="Confirm Order"]')
+    .click();
+
+    cy.get('.maintext').should('contain', ' Your Order Has Been Processed!');
+
+})
